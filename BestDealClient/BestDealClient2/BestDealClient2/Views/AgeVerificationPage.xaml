@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BestDealClient2.Views.AgeVerificationPage"
+             xmlns:vm="clr-namespace:BestDealClient2.ViewModels"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:AgeVerificationViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout Padding="20" Spacing="30">
+            <Label Text="Age Verification"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start"
+                   FontAttributes="Bold"/>
+            <Label Text="By clicking the button below, you agree that you are over the age of 18."
+                   FontSize="18"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalTextAlignment="Center"/>
+            <Button Text="I am over 18" 
+                    Command="{Binding AgeVerificationCommand}"
+                    FontSize="20"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    CornerRadius="8"
+                    VerticalOptions="EndAndExpand"
+                    HorizontalOptions="Center"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

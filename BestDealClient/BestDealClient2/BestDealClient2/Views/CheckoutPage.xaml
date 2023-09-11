@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BestDealClient2.Views.CheckoutPage"
+             xmlns:vm="clr-namespace:BestDealClient2.ViewModels"
+             Title="{Binding Title}"
+             Padding="20,0,20,0">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="20">
+                <Label Text="{Binding Cart.StoreName}" FontSize="24" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" />
+                <StackLayout BindableLayout.ItemsSource="{Binding Cart.Items}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="{Binding ImageUrl}" HeightRequest="60" WidthRequest="60" />
+                                <Label Grid.Column="1" Text="{Binding Name}" FontAttributes="Bold" FontSize="18"/>
+                                <Label Grid.Column="2" Text="{Binding Price, StringFormat='${0}'}" FontAttributes="Italic" FontSize="16"/>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+                <Label Text="{Binding Cart.TotalPrice, StringFormat='Total Price: ${0}'}" FontSize="22" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
+                <Label Text="Select your payment option"
+                    FontSize="20" FontAttributes="Bold"
+                    HorizontalOptions="CenterAndExpand" />
+                <RadioButton Content="In Store" IsChecked="{Binding IsInStore}" FontSize="18"/>
+                <RadioButton Content="Online" IsChecked="{Binding IsOnline}" FontSize="18"/>
+                <Button Text="Proceed" 
+                        Command="{Binding ProceedCommand}"
+                        FontSize="18"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White"
+                        CornerRadius="8"
+                        HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

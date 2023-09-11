@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BestDealClient2.Views.CheckoutFormPage"
+             xmlns:vm="clr-namespace:BestDealClient2.ViewModels"
+             Title="{Binding Title}"
+             Padding="20,0,20,0">
+
+    <ContentPage.BindingContext>
+        <vm:CheckoutFormViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Text="First Name" Grid.Row="0" FontSize="18" FontAttributes="Bold"/>
+                <Entry Placeholder="First Name" Text="{Binding FirstName}" Grid.Row="1" FontSize="18"/>
+
+                <Label Text="Last Name" Grid.Row="2" FontSize="18" FontAttributes="Bold"/>
+                <Entry Placeholder="Last Name" Text="{Binding LastName}" Grid.Row="3" FontSize="18"/>
+
+                <Label Text="Credit Card Number" Grid.Row="4" FontSize="18" FontAttributes="Bold"/>
+                <Entry Placeholder="Credit Card Number" Text="{Binding CreditCardNumber}" Keyboard="Numeric" Grid.Row="5" FontSize="18"/>
+
+                <Label Text="Expiration Date,CVV" Grid.Row="6" FontSize="18" FontAttributes="Bold"/>
+                <StackLayout Orientation="Horizontal" Grid.Row="7">
+                    <Entry Placeholder="MM" Text="{Binding ExpiryMonth}" Keyboard="Numeric" MaxLength="2" WidthRequest="50" FontSize="18"/>
+                    <Label Text="/" VerticalOptions="Center" Margin="10,0" FontSize="18" FontAttributes="Bold"/>
+                    <Entry Placeholder="YY" Text="{Binding ExpiryYear}" Keyboard="Numeric" MaxLength="2" WidthRequest="50" FontSize="18"/>
+                    <Entry Placeholder="CVV" Text="{Binding CCV}" Keyboard="Numeric" MaxLength="3" WidthRequest="50" FontSize="18" Margin="10,0,0,0"/>
+                </StackLayout>
+                
+                <Button Text="Complete Order" 
+                        Grid.Row="10" 
+                        HorizontalOptions="FillAndExpand"
+                        Command="{Binding OrderCommand}"
+                        FontSize="18"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White"
+                        CornerRadius="8"/>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

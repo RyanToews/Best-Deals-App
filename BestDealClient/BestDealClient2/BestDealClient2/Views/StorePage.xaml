@@ -1,0 +1,62 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BestDealClient2.Views.StorePage"
+             Title="{Binding Store.Name}"
+             x:Name="StorePageContent"
+             Padding="30,0,30,0">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="20">
+                <Label Text="Store Details" 
+                       FontSize="24" 
+                       FontAttributes="Bold" 
+                       HorizontalOptions="CenterAndExpand" />
+                <Label Text="{Binding Store.Name}" 
+                       FontAttributes="Bold" 
+                       FontSize="18"/>
+                <Label Text="{Binding Store.Address}" 
+                       FontSize="16"/>
+                <Label Text="{Binding Store.City}" 
+                       FontSize="16"/>
+                <Label Text="{Binding Store.ProvinceState}" 
+                       FontSize="16"/>
+                <Label Text="{Binding Store.PostalCode}" 
+                       FontSize="16"/>
+
+                <Entry x:Name="SearchEntry" 
+                       Placeholder="Search" 
+                       Text="{Binding SearchText}" 
+                       FontSize="18"/>
+                <Button x:Name="SubmitButton" 
+                        Text="Submit" 
+                        Command="{Binding SubmitSearchCommand}"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White"
+                        FontSize="20"
+                        CornerRadius="8"/>
+
+                <StackLayout BindableLayout.ItemsSource="{Binding Items}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" Padding="10">
+                                <Image Source="{Binding ImageUrl}" HeightRequest="60" WidthRequest="60" />
+                                <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18"/>
+                                    <Label Text="{Binding Price, StringFormat='Price: ${0}'}" FontAttributes="Italic" FontSize="16" />
+                                </StackLayout>
+                                <Button Text="Add" 
+                                        Command="{Binding BindingContext.AddToCartCommand, Source={x:Reference Name=StorePageContent}}" 
+                                        CommandParameter="{Binding .}" 
+                                        VerticalOptions="Center" 
+                                        BackgroundColor="{StaticResource Primary}"
+                                        TextColor="White"
+                                        FontSize="18"
+                                        CornerRadius="8"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

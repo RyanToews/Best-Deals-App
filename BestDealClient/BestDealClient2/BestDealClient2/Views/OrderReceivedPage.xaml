@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BestDealClient2.Views.OrderReceivedPage"
+             Padding="20">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="20">
+                <Label Text="Order placed!" FontAttributes="Bold" FontSize="30" HorizontalOptions="CenterAndExpand" TextColor="Green"/>
+                
+                <Frame Padding="20" CornerRadius="5" BackgroundColor="#f1f1f1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Order Number:" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" FontSize="Medium"/>
+                        <Label Text="{Binding OrderId}" Grid.Row="0" Grid.Column="1" FontSize="Medium"/>
+                        
+                        <Label Text="Pickup Address:" Grid.Row="1" Grid.Column="0" FontAttributes="Bold" FontSize="Medium"/>
+                        <Label Text="{Binding StoreAddress}" Grid.Row="1" Grid.Column="1" FontSize="Medium"/>
+                    </Grid>
+                </Frame>
+                
+                <Button Text="Continue to Cart" 
+                        Command="{Binding ContinueCommand}"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White"
+                        FontSize="Large"
+                        HorizontalOptions="Center"
+                        VerticalOptions="EndAndExpand"
+                        CornerRadius="5"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

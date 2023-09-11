@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BestDealClient2.Views.SearchPage"
+             xmlns:vm="clr-namespace:BestDealClient2.ViewModels"
+             x:Name="SearchPageContent"
+             Title="{Binding Title}"
+             Padding="10">
+
+    <ContentPage.BindingContext>
+        <vm:SearchViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="roundedButton" TargetType="Button">
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="CornerRadius" Value="25"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout Spacing="10">
+            <Frame CornerRadius="5">
+                <StackLayout Orientation="Horizontal">
+                    <Entry x:Name="SearchEntry" Placeholder="Search" Text="{Binding SearchText}" HorizontalOptions="FillAndExpand" />
+                    <Button x:Name="SubmitButton"
+                            Text="Submit"
+                            Command="{Binding SubmitSearchCommand}"
+                            BackgroundColor="{StaticResource Primary}"
+                            TextColor="White"
+                            CornerRadius="8" />
+                </StackLayout>
+            </Frame>
+
+            <ListView ItemsSource="{Binding Items}" HasUnevenRows="True" Margin="0,10,0,0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10">
+                                <Image Source="{Binding ImageUrl}" HeightRequest="60" WidthRequest="60" />
+                                <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" />
+                                    <Label Text="{Binding Price, StringFormat='Price: ${0}'}" FontAttributes="Italic" />
+                                </StackLayout>
+                                <Button Text="Add"
+                                        Command="{Binding BindingContext.AddToCartCommand, Source={x:Reference Name=SearchPageContent}}"
+                                        CommandParameter="{Binding .}"
+                                        VerticalOptions="Center"
+                                        BackgroundColor="{StaticResource Primary}"
+                                        TextColor="White"
+                                        CornerRadius="8" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

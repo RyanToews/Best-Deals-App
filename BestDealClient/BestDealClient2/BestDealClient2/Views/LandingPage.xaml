@@ -1,0 +1,68 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BestDealClient2.Views.LandingPage"
+             xmlns:vm="clr-namespace:BestDealClient2.ViewModels"
+             Title="{Binding Title}"
+             Padding="30,0,30,0">
+
+    <ContentPage.BindingContext>
+        <vm:LandingViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Spacing="20">
+            <StackLayout Orientation="Horizontal" 
+                         Spacing="10" 
+                         VerticalOptions="Start">
+                <Entry x:Name="RadiusEntry" 
+                       Placeholder="Radius" 
+                       Keyboard="Numeric" 
+                       Text="{Binding Radius}"
+                       FontSize="18"
+                       VerticalOptions="Center"/>
+                <Label Text="km" 
+                       VerticalOptions="Center" 
+                       FontSize="18"/>
+            </StackLayout>
+            <Button x:Name="UpdateButton" 
+                    Text="Update Radius" 
+                    Command="{Binding UpdateStoresCommand}"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    FontSize="20"
+                    CornerRadius="8"/>
+            <ListView ItemsSource="{Binding SortedStores}" 
+                      HasUnevenRows="True" 
+                      ItemTapped="OnItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10">
+                                <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                    <Label Text="{Binding Store.Name}" 
+                                           FontAttributes="Bold" 
+                                           FontSize="18"/>
+                                    <Label Text="{Binding Store.City}" 
+                                           FontSize="16"/>
+                                    <Label Text="{Binding Distance, StringFormat='{0} meters'}" 
+                                           HorizontalOptions="EndAndExpand" 
+                                           FontSize="16"/>
+                                </StackLayout>
+                                <Label Text="{Binding distance, StringFormat='{0} meters'}" 
+                                       HorizontalOptions="EndAndExpand" 
+                                       TextColor="Black" 
+                                       FontSize="16"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

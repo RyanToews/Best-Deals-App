@@ -1,0 +1,9 @@
+**/.vs
+**/bin
+**/obj
+.DS_Store
+.fake
+**/.vscode
+**/.fleet
+**/.vs
+**/.rider

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BestDealClient2.Views.SignupPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="roundedButton" TargetType="Button">
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="CornerRadius" Value="8"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+                <Label Text="Sign Up" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" />
+                <Entry x:Name="UsernameEntry" Placeholder="Username" Text="{Binding UsernameText}"/>
+                <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" Text="{Binding PasswordText}"/>
+                <Entry x:Name="ConfirmPasswordEntry" Placeholder="Confirm Password" IsPassword="True" Text="{Binding ConfirmPasswordText}"/>
+                <Entry x:Name="FirstnameEntry" Placeholder="First name" Text="{Binding FirstnameText}"/>
+                <Entry x:Name="LastnameEntry" Placeholder="Last name" Text="{Binding LastnameText}"/>
+                <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" Text="{Binding EmailText}"/>
+                <Entry x:Name="AddressEntry" Placeholder="Address" Text="{Binding AddressText}"/>
+                <Entry x:Name="CityEntry" Placeholder="City" Text="{Binding CityText}"/>
+                <Entry x:Name="PostalCodeEntry" Placeholder="Postal Code" Text="{Binding PostalCodeText}"/>
+                <Entry x:Name="ProvinceEntry" Placeholder="Province" Text="{Binding ProvinceText}"/>
+                <Entry x:Name="PhoneEntry" Placeholder="Phone Number" Keyboard="Telephone" Text="{Binding PhoneText}"/>
+                <Button VerticalOptions="Center"
+                        Text="Sign Up"
+                        Command="{Binding SignupCommand}"
+                        Style="{StaticResource roundedButton}"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

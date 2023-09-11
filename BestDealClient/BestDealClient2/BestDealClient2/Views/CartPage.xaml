@@ -1,0 +1,77 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BestDealClient2.Views.CartPage"
+             xmlns:vm="clr-namespace:BestDealClient2.ViewModels"
+             Title="{Binding Title}"
+             x:Name="CartPageInstance"
+             Padding="20,0,20,0">
+
+    <ContentPage.BindingContext>
+        <vm:CartViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="20">
+                <Label Text="Cart Details" FontSize="24" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" />
+
+                <StackLayout BindableLayout.ItemsSource="{Binding Carts}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Spacing="0">
+                                <!-- Line -->
+                                <BoxView HeightRequest="1" Color="Gray" Margin="0,0,0,10"/>
+                                <StackLayout Orientation="Vertical" Padding="10">
+                                    <Label Text="{Binding StoreName}" FontSize="22" FontAttributes="Bold"/>
+                                    <StackLayout x:Name="ItemsStackLayout" BindableLayout.ItemsSource="{Binding Items}">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="60"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Image Grid.Column="0" Source="{Binding ImageUrl}" HeightRequest="60" WidthRequest="60" />
+                                                    <Label Grid.Column="1" Text="{Binding Name}" FontAttributes="Bold" FontSize="18"/>
+                                                    <Label Grid.Column="2" Text="{Binding Price, StringFormat='${0}'}" FontAttributes="Italic" FontSize="16"/>
+                                                    <Button Grid.Column="3" Text="-" 
+                                                            FontSize="Large"  
+                                                            WidthRequest="40" 
+                                                            Command="{Binding Path=BindingContext.DeleteItemCommand, Source={x:Reference CartPageInstance}}" 
+                                                            CommandParameter="{Binding .}"
+                                                            BackgroundColor="{StaticResource Primary}"
+                                                            TextColor="White"
+                                                            CornerRadius="8"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                    <Label Text="{Binding Quantity, StringFormat='Quantity: {0}'}" FontSize="22" FontAttributes="Bold"/>
+                                    <Label Text="{Binding TotalPrice, StringFormat='Total Price: ${0}'}" FontSize="22" FontAttributes="Bold"/>
+                                    <Button Text="Delete Cart" 
+                                            Command="{Binding Path=BindingContext.DeleteCartCommand, Source={x:Reference CartPageInstance}}" 
+                                            CommandParameter="{Binding .}"
+                                            FontSize="18"
+                                            BackgroundColor="{StaticResource Primary}"
+                                            TextColor="White"
+                                            CornerRadius="8"/>
+                                    <Button Text="Checkout" 
+                                            Command="{Binding Path=BindingContext.CheckoutCommand, Source={x:Reference CartPageInstance}}" 
+                                            CommandParameter="{Binding .}"
+                                            FontSize="18"
+                                            BackgroundColor="{StaticResource Primary}"
+                                            TextColor="White"
+                                            CornerRadius="8"/>
+                                </StackLayout>
+                                <!-- Line -->
+                                <BoxView HeightRequest="1" Color="Gray" Margin="0,10,0,0"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
